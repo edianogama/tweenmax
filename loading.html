@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loading HTML</title>
+</head>
+<body>
+    <div id="loader">
+        <span class="triangle"></span>
+        <span class="triangle"></span>
+        <span class="triangle"></span>
+        <span class="triangle"></span>
+    </div>
+
+    <script src="vendor/jquery.js"></script>
+    <script src="vendor/greensock/src/minified/TweenMax.min.js"></script>
+
+    <!-- TweenMax -->
+<script src="vendor/greensock/src/minified/plugins/ScrollToPlugin.min.js"></script>
+<script src="vendor/greensock/src/minified/plugins/DrawSVGPlugin.min.js"></script>
+
+    <style>
+    /* LOADER */
+    #loader {
+        background: #FFF;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        z-index: 9999;
+    }
+    #loader span.triangle {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-right: 20px solid transparent;
+        border-left: 20px solid transparent;
+        border-bottom: 40px solid #02bbf7;
+        position: relative;
+    }
+    #loader span.triangle:nth-child(1) {
+        left: 15px
+    }
+    #loader span.triangle:nth-child(2) {
+        transform: rotate(180deg);
+    }
+    #loader span.triangle:nth-child(3) {
+        right: 15px
+    }
+    #loader span.triangle:nth-child(4) {
+        transform: rotate(180deg);
+        right: 30px
+}
+    </style>
+<script>
+const spinners = $('#loader span.triangle');
+    TweenMax.staggerFromTo(spinners, 
+        .4,
+    {
+        scale: .5,
+        opacity: 0,
+    }, {
+        scale: 1,
+        repeat: -1,
+        yoyo: true,
+        opacity: 1
+    }, .2);
+
+    var tw = TweenMax.to('#loader', .6, {height: '0', delay: 1, 
+        onUpdate: () =>  (tw.progress() > 0.30 ) ? $('#loader').fadeOut(): '',  
+        onComplete: () => $('#loader').remove()
+    });
+
+</script>
+</body>
+</html>

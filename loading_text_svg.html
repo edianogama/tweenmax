@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loading HTML</title>
+</head>
+<body>
+<svg width="500px" height="200px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <text x="50"  y="50" class="load"
+    fill="none"
+    text-anchor="middle"
+    stroke="#000"
+    stoke-width="1.2"
+    font-size="40"
+    font-family="arial"
+    stroke-dasharray="488"
+    stroke-dashoffset="488"
+    >Ediano Gama</text>
+</svg>
+  
+    <!-- TweenMax -->
+<script src="vendor/jquery.js"></script>
+<script src="vendor/greensock/src/minified/TweenMax.min.js"></script>
+<script src="vendor/greensock/src/minified/plugins/ScrollToPlugin.min.js"></script>
+<script src="vendor/greensock/src/minified/plugins/DrawSVGPlugin.min.js"></script>
+<script>
+    const load  = document.querySelector('.load');
+    TweenMax.to(load, 3, { strokeDashoffset: 0, ease:Sine.easeInOut, repeat: -1 });
+
+
+        
+</script>
+
+<style>
+  
+</style>
+
+</body>
+</html>

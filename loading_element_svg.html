@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loading HTML</title>
+</head>
+<body>
+    <div class="align-center">
+            <svg id="loader" stroke-dashoffset="2075" stroke-dasharray="2075" width="200" height="200" stroke="10" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 411.54 448.3"><defs><style>.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;}</style></defs><title>Sem título-1</title>
+                <path class="cls-1" d="M310,120S76,110,92,274,287,408,287,408s195-43,147-162S383,97,283,60,61,72,57,114,16,282,78,403s247,92,267,77,92-65,92-65l16,33" transform="translate(-41.91 -46.42)"/></svg>
+    </div>
+  
+    <!-- TweenMax -->
+<script src="vendor/jquery.js"></script>
+<script src="vendor/greensock/src/minified/TweenMax.min.js"></script>
+<script src="vendor/greensock/src/minified/plugins/ScrollToPlugin.min.js"></script>
+<script src="vendor/greensock/src/minified/plugins/DrawSVGPlugin.min.js"></script>
+<script>
+    const load  = document.querySelector('#loader');
+    TweenMax.to(load, 3, { strokeDashoffset: 0, ease: Sine.easeInOut, repeat: -1, yoyo:true})
+</script>
+
+<style>
+    * { margin: 0; padding: 0}
+    .align-center {
+        height: 100vh;
+        width: 100%;
+        background:#383A39; 
+        display: flex;
+        align-items:center;
+        justify-content: center;
+    }
+  
+</style>
+
+</body>
+</html>
