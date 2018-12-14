@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>Modal</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="modal">
+            <div class="modal__header">
+                <div class="modal__close">X</div>
+                <h1>Título da minha modal</h1>
+            </div>
+            <div class="modal__body">
+                <p>aqui vai o conteúdo da minha modal'</p>
+            </div>
+            <div class="modal__footer">
+                <small>copyright</small>
+            </div>
+        </div>
+      
+    </div>
+    <div class="actions">
+            <button class="actions__open"> Abrir Modal</button>
+        </div>
+    <style>
+        * { margin: 0; padding: 0 }
+        body {
+            max-width: 90vw;
+            margin: 0 auto;
+            background: rgba(0, 163, 238, 0.616);
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+        }
+        button {
+            padding: 5px 20px;
+            background: #1356CA;
+            color: #fff;
+            border-color: transparent;  
+            cursor: pointer;          
+         } 
+        .modal {
+            max-width: 400px;
+            min-height: 200px;
+            background: #f4f4f4;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 5px 5px 1px rgba(0, 163, 238, 0.616);
+            visibility: hidden;
+            opacity: 0;
+        }
+     
+
+        .modal .modal__header {
+            display: block;
+            background: #e41134;
+            padding: 10px;
+            position: relative;
+            text-align: center;
+        }
+        .modal .modal__header .modal__close { 
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: #ffff;
+            font-weight: bold;
+            color: #e41134;
+            border-radius: 10px;
+            padding: 5px;
+            margin: 5px;
+            width: 10px;
+            height: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .modal .modal__header h1 {
+            font-size: 1.2rem;
+            color: #fff;
+            text-transform: uppercase;
+         }
+         .modal .modal__body {
+             padding: 10px;
+         }
+         .modal .modal__footer {
+             padding: 10px;
+         }
+    </style>
+
+    <script src="vendor/jquery.js"></script>
+    <script src="vendor/greensock/src/minified/TweenMax.min.js"></script>
+
+    <!-- TweenMax -->
+    <script src="vendor/greensock/src/minified/plugins/ScrollToPlugin.min.js"></script>
+    <script src="vendor/greensock/src/minified/plugins/DrawSVGPlugin.min.js"></script>
+
+    <script>
+        const modal = document.querySelector('.modal');
+        const openModal = document.querySelector('.actions__open');
+        const closeModal = document.querySelector('.modal__close');
+
+        openModal.addEventListener('click', () => {
+            TweenMax.to(modal, .4, { autoAlpha: 1});
+        })
+
+        closeModal.addEventListener('click', () => { 
+            TweenMax.to(modal, .3, { autoAlpha: 0 });
+        })
+
+        
+    </script>
+</body>
+
+</html>

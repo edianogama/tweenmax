@@ -1078,6 +1078,9 @@
             </g>
         </g>
     </svg>
+    <div class="center">
+        <button class="restart">Reiniciar</button>
+    </div>
     <style>
         body {
             max-width: 90vw;
@@ -1104,6 +1107,21 @@
             border-radius: 10px;
             text-decoration: none;
         }
+
+        .center { 
+            margin: 10px 0;            
+            text-align: center;
+        }
+        .center button {
+            padding: 5px 20px;
+            background: #1356CA;
+            color: #fff;
+            border-color: transparent;  
+            cursor: pointer;          
+         } 
+         .center button:focus{
+            font-size: small;
+         }
     </style>
 
     <script src="vendor/jquery.js"></script>
@@ -1125,19 +1143,27 @@
 
         const title = document.querySelectorAll('#title g');
 
-        console.log(textCup);
+        const show = {opacity: 0, scale: 0};
+        const transformLeft = {transformOrigin: 'left bottom'};
+        const transformRight = {transformOrigin: 'right bottom'};
+        const alignCenterBottom = { transformOrigin: 'bottom center'};
 
         const tl = new TimelineMax();
         tl.staggerFrom(title, .4, { opacity: 0, y: 10 }, -.05)
-            .from(trophy, .3, { opacity: 0, scale: .7, transformOrigin: 'center bottom' })
+            .from(trophy, .3, { opacity: 0, scale: .7, ...alignCenterBottom })
             .add('vuvuzela', '-=.2')
-            .from(rightVuvuzela, .3, { opacity: 0, scale: 0, transformOrigin: 'left bottom'}, 'vuvuzela')
-            .from(leftVuvuzela, .3, { opacity: 0, scale: 0, transformOrigin: 'right bottom' }, 'vuvuzela')
-            .from(rightFlag, .4, { scale: 0, opacity: 0, rotation: '-90deg', transformOrigin: 'left bottom' }, 'vuvuzela =+.2')
-            .from(leftFlag, .4, { scale: 0,  opacity: 0, rotation: '90deg', transformOrigin: 'right bottom' }, 'vuvuzela =+.2')
-            .from(background, .5, { scale: .98, transformOrigin: 'bottom center', opacity: 0 }, 'vuvuzela')
-            .to(background, 1, { opacity:.9, scale: .98, transformOrigin: 'bottom center', repeat: -1, yoyo: true
+            .from(rightVuvuzela, .3, { ...show, ...transformLeft }, 'vuvuzela')
+            .from(leftVuvuzela, .3, { ...show, ...transformRight}, 'vuvuzela')
+            .from(rightFlag, .4, {...show, rotation: '-90deg',  ...transformLeft }, 'vuvuzela =+.2')
+            .from(leftFlag, .4, { ...show, rotation: '90deg', ...transformRight }, 'vuvuzela =+.2')
+            .from(background, .5, { scale: .98, opacity: 0 }, 'vuvuzela')
+            .to(background, 1, { opacity:.9, scale: .98, ...alignCenterBottom, repeat: -1, yoyo: true
             });
+
+        document.querySelector('.center .restart').addEventListener('click', () => {
+            tl.restart();
+        })
+
     </script>
 </body>
 
