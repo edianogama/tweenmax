@@ -28,88 +28,11 @@
         <div class="actions">
             <button class="actions__open fadeIn"> Abrir Modal Fade</button>
             <button class="actions__open scaleIn"> Abrir Modal Scale</button>
+            <button class="actions__open slideUp"> Abrir Modal slideUp</button>
+            <button class="actions__open fullScreen"> FullScreen</button>
         </div>
     </div>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0
-        }
-
-        body {
-            margin: 0 auto;
-            background: rgba(0, 163, 238, 0.616);
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        button {
-            padding: 5px 20px;
-            background: #1356CA;
-            color: #fff;
-            border-color: transparent;
-            cursor: pointer;
-        }
-        .modal { 
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            visibility: hidden;
-            opacity: 0;
-            background: rgba(0, 0, 0, 0.616);
-            width: 100%;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .modal .modal__box {
-            max-width: 400px;
-            min-height: 200px;
-            background: #f4f4f4;
-            border-radius: 10px;
-            box-shadow: 5px 5px 1px rgba(0, 163, 238, 0.616);
-        }
-        .modal .modal__header {
-            display: block;
-            background: #e41134;
-            padding: 10px;
-            position: relative;
-            text-align: center;
-        }
-
-        .modal .modal__header .modal__close {
-            position: absolute;
-            right: 0;
-            top: 0;
-            background: #ffff;
-            font-weight: bold;
-            color: #e41134;
-            border-radius: 10px;
-            padding: 5px;
-            margin: 5px;
-            width: 10px;
-            height: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-        .modal .modal__header h1 {
-            font-size: 1.2rem;
-            color: #fff;
-            text-transform: uppercase;
-        }
-        .modal .modal__body {
-            padding: 10px;
-        }
-        .modal .modal__footer {
-            padding: 10px;
-        }
-        .actions {}
-    </style>
 
     <script src="vendor/jquery.js"></script>
     <script src="vendor/greensock/src/minified/TweenMax.min.js"></script>
@@ -122,19 +45,41 @@
         const modal = document.querySelector('.modal');
         const openModalFadeIn = document.querySelector('.actions__open.fadeIn');
         const openModalScaleIn = document.querySelector('.actions__open.scaleIn');
+        const openModalSlideIn = document.querySelector('.actions__open.slideUp');
+        const openModalFullScreen = document.querySelector('.actions__open.fullScreen');
         const modalBox = document.querySelector('.modal__box');
         const closeModal = document.querySelector('.modal__close');
+        const headerModal = document.querySelector('.modal__header');
+        const headerModalH1 = document.querySelector('.modal__header h1');
+
 
         // fadein
         openModalFadeIn.addEventListener('click', () => {
+            TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
             TweenMax.to(modal, .4, { autoAlpha: 1 });
         });
         
         // Scale
         openModalScaleIn.addEventListener('click', () => {
+            TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
             TweenMax.to(modal, .4, { autoAlpha: 1 });
             TweenMax.set(modalBox, {scale: 0});
             TweenMax.to(modalBox, .2, { scale: 1, delay:.2, ease: Power3.easeInOut})
+        });
+        
+        // SlideUp
+        openModalSlideIn.addEventListener('click', () => {
+           TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
+           TweenMax.to(modal, .4, {autoAlpha: 1})
+           TweenMax.from(modalBox, .4, { y: 200, autoAlpha: 0, ease: Power3.easeInOut })
+        });
+        // Full
+        openModalFullScreen.addEventListener('click', () => {
+            TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
+            TweenMax.set([headerModal, modalBox, headerModalH1], { position: 'initial', color:'#999', boxShadow: "initial", backgroundColor: "#fff"});
+            TweenMax.set(modal, { backgroundColor: "#fff" });
+            TweenMax.to(modal, .4, { autoAlpha: 1, scale: 0});
+            TweenMax.from(modal, .4, {scale: 0, autoAlpha: 1})
         });
         
         
@@ -145,6 +90,97 @@
 
 
     </script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    body {
+        margin: 0 auto;
+        background: rgba(0, 163, 238, 0.616);
+        font-family: 'Montserrat', sans-serif;
+    }
+    .actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100%;
+    }
+    .actions button {
+        margin: 0 5px;
+        padding: 40px 20px;
+        background:#f4f4f4;
+        color: #999;
+        font-weight: bold;
+        border-radius: 5px;
+        text-transform: uppercase;
+        border-color: transparent;
+        cursor: pointer;
+        box-shadow: 1px 2px 10px rgb(58, 58, 58);
+    }
+    .modal { 
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        opacity: 0;
+        background: rgba(0, 0, 0, 0.616);
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .modal .modal__box {
+        max-width: 400px;
+        min-height: 200px;
+        background: #f4f4f4;
+        border-radius: 10px;
+        box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.4);
+    }
+    .modal .modal__header {
+        display: block;
+        background: #e41134;
+        padding: 10px;
+        position: relative;
+        text-align: center;
+    }
+
+    .modal .modal__header .modal__close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: #ffff;
+        font-weight: bold;
+        color: #e41134;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5px;
+        width: 10px;
+        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .modal .modal__header h1 {
+        font-size: 1.2rem;
+        color: #fff;
+        text-transform: uppercase;
+    }
+    .modal .modal__body {
+        padding: 10px;
+    }
+    .modal .modal__footer {
+        padding: 10px;
+    }
+  
+</style>
 </body>
 
 </html>
