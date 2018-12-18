@@ -55,13 +55,11 @@
 
         // fadein
         openModalFadeIn.addEventListener('click', () => {
-            TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
             TweenMax.to(modal, .4, { autoAlpha: 1 });
         });
         
         // Scale
         openModalScaleIn.addEventListener('click', () => {
-            TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
             TweenMax.to(modal, .4, { autoAlpha: 1 });
             TweenMax.set(modalBox, {scale: 0});
             TweenMax.to(modalBox, .2, { scale: 1, delay:.2, ease: Power3.easeInOut})
@@ -69,13 +67,11 @@
         
         // SlideUp
         openModalSlideIn.addEventListener('click', () => {
-           TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
            TweenMax.to(modal, .4, {autoAlpha: 1})
            TweenMax.from(modalBox, .4, { y: 200, autoAlpha: 0, ease: Power3.easeInOut })
         });
         // Full
         openModalFullScreen.addEventListener('click', () => {
-            TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
             TweenMax.set([headerModal, modalBox, headerModalH1], { position: 'initial', color:'#999', boxShadow: "initial", backgroundColor: "#fff"});
             TweenMax.set(modal, { backgroundColor: "#fff" });
             TweenMax.to(modal, .4, { autoAlpha: 1, scale: 0});
@@ -85,6 +81,7 @@
         
         
         closeModal.addEventListener('click', () => {
+            TweenMax.set([headerModal, modalBox, headerModalH1, modal, closeModal], {clearProps: 'all'})
             TweenMax.to(modal, .3, { autoAlpha: 0 });
         })
 
