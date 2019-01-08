@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Draggable Basics</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+
+<body>
+
+    <pre id="code"><code>
+Draggable.create(target)
+    </code></pre>
+
+    <section class="gallery">
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+
+        <article class="item">
+            <div class="image"></div>
+            <div class="description">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </article>
+    </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/utils/Draggable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/plugins/CSSPlugin.min.js"></script>
+
+<script>
+    const itens  = document.querySelectorAll('.gallery .item');
+    Draggable.create(itens);
+</script>
+
+</body>
+
+</html>
