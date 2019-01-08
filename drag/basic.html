@@ -104,7 +104,12 @@ Draggable.create(target)
 
 <script>
     const itens  = document.querySelectorAll('.gallery .item');
-    Draggable.create(itens);
+    const gallery = document.querySelector('.gallery');
+    Draggable.create(itens,{
+        bounds: gallery,
+        edgeResistance: .8,
+        dragResistance: .3
+    });
 </script>
 
 </body>
